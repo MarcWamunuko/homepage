@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:homepage/utilities/task_tile.dart';
 import 'package:backdrop/backdrop.dart';
 import '../utilities/emoticon_face.dart';
+import 'package:flutter_rating_bar/';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
