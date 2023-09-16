@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:homepage/utilities/task_tile.dart';
-
+import 'package:backdrop/backdrop.dart';
 import '../utilities/emoticon_face.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,9 +16,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BackdropScaffold(
       backgroundColor: Colors.purple[900],
-      body: SafeArea(
+      backLayerBackgroundColor: Colors.purple[900],
+      stickyFrontLayer: true,
+      headerHeight: 450,
+      backLayer: SafeArea(
         child: Column(children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -193,67 +196,71 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
             height: 40,
           ),
-          Expanded(
-            child: ClipRRect(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(40),
-                topRight: Radius.circular(40),
-              ),
-              child: Container(
-                padding: EdgeInsets.all(25),
-                color: Colors.white,
-                child: Center(
-                  child: Column(children: [
-                    // Task Heading
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Tasks",
-                          style: GoogleFonts.workSans(
-                              fontWeight: FontWeight.bold, fontSize: 20),
-                        ),
-                        Icon(Icons.more_horiz)
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    //Listview for tasks
-                    Expanded(
-                      child: ListView(
-                        children: [
-                          TaskTile(
-                            icon: Icons.favorite,
-                            taskName: "Physics Homework",
-                            taskdes: "Research Report",
-                            color: Colors.orange,
-                          ),
-                          TaskTile(
-                              icon: Icons.book,
-                              taskName: "Daily reading",
-                              taskdes: "Read this certain book page 57",
-                              color: Colors.green),
-                          TaskTile(
-                              icon: Icons.shopping_bag,
-                              taskName: "Shopping",
-                              taskdes: "Buy food",
-                              color: Colors.pink),
-                          TaskTile(
-                              icon: Icons.gamepad,
-                              taskName: "Chill",
-                              taskdes: "Play some games",
-                              color: Colors.blue),
-                        ],
-                      ),
-                    )
-                  ]),
-                ),
-              ),
-            ),
-          )
         ]),
       ),
+      frontLayer: SafeArea(
+          child: Expanded(
+        child: ClipRRect(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(40),
+            topRight: Radius.circular(40),
+          ),
+          child: Container(
+            padding: EdgeInsets.fromLTRB(25, 0, 25, 0),
+            color: Colors.white,
+            child: Center(
+              child: Column(children: [
+                // Task Heading
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Tasks",
+                      style: GoogleFonts.workSans(
+                          fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                    BackdropToggleButton(
+                      icon: AnimatedIcons.menu_close,
+                      color: Colors.black,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                //Listview for tasks
+                Expanded(
+                  child: ListView(
+                    children: [
+                      TaskTile(
+                        icon: Icons.favorite,
+                        taskName: "Physics Homework",
+                        taskdes: "Research Report",
+                        color: Colors.orange,
+                      ),
+                      TaskTile(
+                          icon: Icons.book,
+                          taskName: "Daily reading",
+                          taskdes: "Read this certain book page 57",
+                          color: Colors.green),
+                      TaskTile(
+                          icon: Icons.shopping_bag,
+                          taskName: "Shopping",
+                          taskdes: "Buy food",
+                          color: Colors.pink),
+                      TaskTile(
+                          icon: Icons.gamepad,
+                          taskName: "Chill",
+                          taskdes: "Play some games",
+                          color: Colors.blue),
+                    ],
+                  ),
+                )
+              ]),
+            ),
+          ),
+        ),
+      )),
     );
   }
 }
