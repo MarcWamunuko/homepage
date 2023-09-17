@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:homepage/utilities/task_tile.dart';
 import 'package:backdrop/backdrop.dart';
 import '../utilities/emoticon_face.dart';
-import 'package:flutter_rating_bar/';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,8 +20,11 @@ class _HomePageState extends State<HomePage> {
     return BackdropScaffold(
       backgroundColor: Colors.purple[900],
       backLayerBackgroundColor: Colors.purple[900],
+      frontLayerBackgroundColor: Colors.purple[900],
+      frontLayerScrim: Colors.transparent,
+      revealBackLayerAtStart: true,
       stickyFrontLayer: true,
-      headerHeight: 450,
+      headerHeight: 500,
       backLayer: SafeArea(
         child: Column(children: [
           Padding(
@@ -207,7 +210,7 @@ class _HomePageState extends State<HomePage> {
             topRight: Radius.circular(40),
           ),
           child: Container(
-            padding: EdgeInsets.fromLTRB(25, 0, 25, 0),
+            padding: EdgeInsets.all(25),
             color: Colors.white,
             child: Center(
               child: Column(children: [
